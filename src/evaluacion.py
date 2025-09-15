@@ -1,11 +1,14 @@
+innovacion = 3
+presentacion = 1
+errores = -1
 # Función para calcular el puntaje de un solo equipo
 def calcular_puntaje(evaluacion):
     """
     Calcula el puntaje de un equipo en una ronda.
     """
-    puntos_innovacion = evaluacion['innovacion'] * 3
-    puntos_presentacion = evaluacion['presentacion'] * 1
-    puntos_errores = -1 if evaluacion['errores'] else 0 # Resta si errores es true
+    puntos_innovacion = evaluacion['innovacion'] * innovacion
+    puntos_presentacion = evaluacion['presentacion'] * presentacion
+    puntos_errores = errores if evaluacion['errores'] else 0 # Resta si errores es true
     return puntos_innovacion + puntos_presentacion + puntos_errores
 
 # Procesa una ronda y calcula  MER
@@ -67,11 +70,9 @@ def mostrar_ranking(acumulados):
         reverse=True
     )
     print("--- Ranking Actualizado ---")
-    print(f"{'Equipo':<10}{'Innovación':<15}{'Presentación':<15}{'Errores':<10}
-          {'Mejores Equipos':<20}{'Puntos Total':<15}")
+    print(f"{'Equipo':<10}{'Innovación':<15}{'Presentación':<15}{'Errores':<10}{'Mejores Equipos':<20}{'Puntos Total':<15}")
     for equipo, datos in equipos_ordenados:
-        print(f"{equipo:<10}{datos['innovacion']:<15}{datos['presentacion']:<15}
-              {datos['errores']:<10}{datos['mejores_equipos']:<20}{datos['puntos_total']:<15}")
+        print(f"{equipo:<10}{datos['innovacion']:<15}{datos['presentacion']:<15}{datos['errores']:<10}{datos['mejores_equipos']:<20}{datos['puntos_total']:<15}")
     print("\n" + "="*80 + "\n")
     
     
