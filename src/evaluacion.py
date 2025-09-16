@@ -1,6 +1,7 @@
 innovacion = 3
 presentacion = 1
 errores = -1
+
 # Función para calcular el puntaje de un solo equipo
 def calcular_puntaje(evaluacion):
     """
@@ -38,9 +39,9 @@ def procesar_ronda(ronda, acumulados):
     # Actualiza acumulados
    
     for equipo, evaluacion in ronda.items():
-        acumulados[equipo]['innovacion'] += evaluacion['innovacion']*3
-        acumulados[equipo]['presentacion'] += evaluacion['presentacion']*1
-        acumulados[equipo]['errores'] += 1 if evaluacion['errores'] else 0
+        acumulados[equipo]['innovacion'] += evaluacion['innovacion']*innovacion
+        acumulados[equipo]['presentacion'] += evaluacion['presentacion']*presentacion
+        acumulados[equipo]['errores'] += errores if evaluacion['errores'] else 0
         acumulados[equipo]['puntos_total'] += puntajes_ronda[equipo]
         
     # Maximo con puntaje alto
@@ -48,11 +49,15 @@ def procesar_ronda(ronda, acumulados):
     mejor_puntaje_ronda = puntajes_ronda[mejor_equipo_ronda]
     acumulados[mejor_equipo_ronda]['mejores_equipos'] += 1
     
-    # 
-    equipos_con_errores = list(filter(lambda e: ronda[e]['errores'], ronda.keys()))
-    print(f"Equipos con errores graves en esta ronda: {equipos_con_errores}")
-
     return (mejor_equipo_ronda, mejor_puntaje_ronda)
+
+def encontrar_ganadores(acumulados):
+    """
+    Busca el o los equipos ganadores una vez finalizadas todas las rondas
+    """
+    puntaje_maximo = max(equipo['puntos_total'] for equipo in acumulados.values())
+    ganadores = [equipo for equipo, datos in acumulados.items() if datos['puntos_total'] == puntaje_maximo]
+    return ganadores
 
 # Muestra el ranking
 def mostrar_ranking(acumulados):
@@ -69,6 +74,8 @@ def mostrar_ranking(acumulados):
         key=lambda item: item[1]['puntos_total'],
         reverse=True
     )
+    
+ 
     print("--- Ranking Actualizado ---")
     print(
         f"{'Equipo':<10}{'Innovación':<15}{'Presentación':<15}{'Errores':<10}"
