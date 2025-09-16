@@ -70,9 +70,16 @@ def mostrar_ranking(acumulados):
         reverse=True
     )
     print("--- Ranking Actualizado ---")
-    print(f"{'Equipo':<10}{'Innovación':<15}{'Presentación':<15}{'Errores':<10}{'Mejores Equipos':<20}{'Puntos Total':<15}")
+    print(
+        f"{'Equipo':<10}{'Innovación':<15}{'Presentación':<15}{'Errores':<10}"
+        f"{'Mejores Equipos':<20}{'Puntos Total':<15}"
+    )
     for equipo, datos in equipos_ordenados:
-        print(f"{equipo:<10}{datos['innovacion']:<15}{datos['presentacion']:<15}{datos['errores']:<10}{datos['mejores_equipos']:<20}{datos['puntos_total']:<15}")
+        print(
+            f"{equipo:<10}{datos['innovacion']:<15}{datos['presentacion']:<15}"
+            f"{datos['errores']:<10}{datos['mejores_equipos']:<20}"
+            f"{datos['puntos_total']:<15}"
+        )
     print("\n" + "="*80 + "\n")
     
     
