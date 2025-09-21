@@ -51,8 +51,8 @@ def procesar_ronda(ronda, acumulados):
     for equipo, puntos_desglose in datos_equipos:
         puntajes_ronda[equipo] = puntos_desglose['puntos_totales']
 
-        for equi, puntos in puntos_desglose.items():
-            acumulados[equipo][equi] += puntos
+        for concepto, puntos in puntos_desglose.items():
+            acumulados[equipo][concepto] += puntos
             
         
     # Maximo con puntaje alto
