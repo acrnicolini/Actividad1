@@ -21,7 +21,7 @@ def calcular_puntaje(evaluacion):
     return {
              'innovacion': puntos_innovacion,
              'presentacion': puntos_presentacion,
-             'errores': puntos_errores,
+             'errores': puntos_errores * (-1),
              'puntos_totales': puntos_totales
             }
 
